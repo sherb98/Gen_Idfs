@@ -273,7 +273,7 @@ if __name__ == '__main__':
 
     #Metadata 1 Start
     #__________________________________________________________________________________
-    building_type = "office"
+    building_types = ["office","residential"]
     WWRs = [20,30,40,50,60,70,80] #20,30,40,50,
     orientations=["South","East","West","North"]
     #this is only FYI; it is hard-coded in the function
@@ -284,17 +284,17 @@ if __name__ == '__main__':
 
     epw_folder="IWEC_test"
 
-    Sim_dir=os.path.join("Testing_Simulations",building_type) #create a directory for the simulations
-    if os.path.exists(Sim_dir):
-        shutil.rmtree(Sim_dir)
-    os.makedirs(Sim_dir)
-
     #epws=[]
     epws_corr_ent=[]
     names_epws=[]
     
     csv_prefixes=[]
     idf_list=[]
+
+    Sim_dir="IDF_dir"#,building_type) #create a directory for the simulations
+    if os.path.exists(Sim_dir):
+        shutil.rmtree(Sim_dir)
+    os.makedirs(Sim_dir)
 
     for file in os.listdir(epw_folder):
         epwfile=os.path.abspath(os.path.join(epw_folder,file))
@@ -308,20 +308,20 @@ if __name__ == '__main__':
 
         names_epws.append(name_epw_current)
 
-        #IDFs generated here:
-        #__________________________________________________________________________________
-        csv_prefixes_cur,idf_list_cur,iddfile=gen_idf_run_sim(Sim_dir,building_type,epwfile,WWRs,name_epw_current,orientations)
-        #idfs are named like so: building_type_variant_WWR_orientation_epwname.idf ; epw name: WMOnumber_format
-        #__________________________________________________________________________________
+        for building_type in building_types:
+            #__________________________________________________________________________________
+            csv_prefixes_cur,idf_list_cur,iddfile=gen_idf_run_sim(Sim_dir,building_type,epwfile,WWRs,name_epw_current,orientations)
+            #idfs are named like so: building_type_variant_WWR_orientation_epwname.idf ; epw name: WMOnumber_format
+            #__________________________________________________________________________________
 
-        idf_list_cur_flat=[item for sublist in idf_list_cur for item in sublist] #flatten list
-        csv_list_cur_flat=[item+'.csv' for sublist in csv_prefixes_cur for item in sublist] #flatten list
+            idf_list_cur_flat=[item for sublist in idf_list_cur for item in sublist] #flatten list
+            csv_list_cur_flat=[item+'.csv' for sublist in csv_prefixes_cur for item in sublist] #flatten list
 
-        for iter in range (0,len(csv_list_cur_flat)): #append epw file the same number of times as the number of simulations
-            epws_corr_ent.append(epwfile)
+            for iter in range (0,len(csv_list_cur_flat)): #append epw file the same number of times as the number of simulations
+                epws_corr_ent.append(epwfile) #this is the corresponding epw list for the simulations
 
-        csv_prefixes.append(csv_list_cur_flat)
-        idf_list.append(idf_list_cur_flat)
+            csv_prefixes.append(csv_list_cur_flat)
+            idf_list.append(idf_list_cur_flat)
 
     idf_list_flat=[item for sublist in idf_list for item in sublist] #flatten list
     csv_list_flat=[item for sublist in csv_prefixes for item in sublist] #flatten list
