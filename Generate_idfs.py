@@ -191,7 +191,7 @@ def gen_idf_run_sim(Sim_dir,building_type,epwfile,WWRs,name_epw_current,orientat
             
             idf_ventday=copy.deepcopy(idf1) #make a deep copy
             ventilation=idf_ventday.idfobjects['ZoneVentilation:WindandStackOpenArea'][0]
-            ventilation.Opening_Area_Fraction_Schedule_Name="NatVentAvail_Zone_0" #only avail between 7 am and 6pm
+            ventilation.Opening_Area_Fraction_Schedule_Name="NatVent_day" #only avail between 7 am and 6pm
             ventilation.Opening_Area=1 #1m2
             ventilation.Height_Difference=1 #1m
             ventilation.Minimum_Indoor_Temperature=22 #22deg C

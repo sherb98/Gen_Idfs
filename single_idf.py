@@ -185,7 +185,7 @@ def gen_idf(epw_dir,epw_filename,template_dir,template_name,output_dir,WWR,windo
     
     idf_ventday=copy.deepcopy(idf1) #make a deep copy
     ventilation=idf_ventday.idfobjects['ZoneVentilation:WindandStackOpenArea'][0]
-    ventilation.Opening_Area_Fraction_Schedule_Name="NatVentAvail_Zone_0" #only avail between 7 am and 6pm
+    ventilation.Opening_Area_Fraction_Schedule_Name="NatVent_day" #only avail between 7 am and 6pm
     ventilation.Opening_Area=1 #1m2
     ventilation.Height_Difference=1 #1m
     ventilation.Minimum_Indoor_Temperature=22 #22deg C
