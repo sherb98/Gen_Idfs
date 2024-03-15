@@ -1,2 +1,5 @@
 eppy==0.5.63
 pandas==1.5.1
+pythermalcomfort==2.9.2
+numpy==1.23.4
+tables==3.9.2
