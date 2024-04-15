@@ -1316,13 +1316,13 @@ Schedule:Day:Hourly, 844f2b24-f0e4-42d2-8398-1ef02e78e4ef, AnyNumber,414.69,414.
 
 Schedule:Day:Hourly, d8d94e42-e3b1-448f-9f6b-18817d0eb1eb, Fraction,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
 
-Schedule:Day:Hourly, b5f67142-372e-401a-a043-bc6129e38a8e, Fraction,0,0,0,0,0,0,0,0.2,0.4,0.6,0.8,0.8,0.4,0.6,0.8,0.8,0.4,0.2,0,0,0,0,0,0;
+Schedule:Day:Hourly, b5f67142-372e-401a-a043-bc6129e38a8e, Fraction,0,0,0,0,0,0,0,0.2,0.6,1,1,0.8,0.4,0.6,1,0.8,0.6,0.2,0,0,0,0,0,0;
 
-Schedule:Day:Hourly, 1e1cd6d8-1d30-42ad-9dee-1e4b8f4a7a09, Fraction,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0;
+Schedule:Day:Hourly, 1e1cd6d8-1d30-42ad-9dee-1e4b8f4a7a09, Fraction,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0;
 
-Schedule:Day:Hourly, daf3eda0-5ed1-4f33-a4c8-a61766a730b8, Fraction,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1;
+Schedule:Day:Hourly, daf3eda0-5ed1-4f33-a4c8-a61766a730b8, Fraction,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3;
 
-Schedule:Day:Hourly, af49f540-b7c9-4a87-8fda-3baefa091729, Fraction,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.2,0.4,0.6,0.8,0.8,0.4,0.6,0.8,0.8,0.4,0.2,0.1,0.1,0.1,0.1,0.1,0.1;
+Schedule:Day:Hourly, af49f540-b7c9-4a87-8fda-3baefa091729, Fraction,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.6,0.8,1,0.8,0.4,0.6,1,0.8,0.6,0.3,0.3,0.3,0.3,0.3,0.3,0.3;
 
 Schedule:Day:Hourly, 0d4e5b30-2aed-49dc-ab11-0cff270160e0, Fraction,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
 
@@ -6471,7 +6471,7 @@ People,
     occOffice,    !- OccupancySchedule
     People/Area,    !- Number of People Calculation Method
     ,   !- Number of People
-    0.0714,    !- PeopleDensity [person/m2]
+    0.1,    !- PeopleDensity [person/m2]
     ,   !- Floor Area per Person [m2/person]
     0.3,    !- Fraction Radiant
     AUTOCALCULATE,  !- Sensible Heat Fraction
@@ -6504,7 +6504,7 @@ ElectricEquipment,
   equipOffice, !- EquipmentAvailibilitySchedule
   Watts/Area,          !- Design Level Calculation Method
   ,                !- Design Level [W]
-  7, !- EquipmentPowerDensity [W/m2]
+  10, !- EquipmentPowerDensity [W/m2]
   ,                        !- Watts per Person [W/person]
   0,                       !- Fraction Latent
   .2,                      !- Fraction Radiant
@@ -6518,7 +6518,7 @@ Lights,
   lightsOffice, !- LightsAvailibilitySchedule
   Watts/Area,              !- Design Level Calculation Method
   ,                        !- Lighting Level [W]
-  3,   !- LightingPowerDensity [W/m2]
+  6.4,   !- LightingPowerDensity [W/m2]
   ,                        !- Watts per Person [W/person]
   0,                       !- Return Air Fraction
   .42,                     !- Fraction Radiant
@@ -6551,7 +6551,7 @@ Daylighting:ReferencePoint,
      Zone_0,                        !-Zone Name
     3,                        !-X - Coordinate of Reference Point [m]
     4.19439667463303,                        !-Y - Coordinate of Reference Point [m]
-    0.85; !-Z - Coordinate of Reference Point [m]
+    0.75; !-Z - Coordinate of Reference Point [m]
             ! ------------------------ NATVENT
 
 
@@ -6707,7 +6707,7 @@ Zone_0:f2:w0_Shade,                              !- Material name of shading dev
   FixedSlatAngle,                                !- Type of slat angle control
   ,                                              !- Slat angle schedule name
   0,                                             !- Setpoint 2
-Zone_0_DaylCtrl, !-Daylighting Control Object Name
+, !-Daylighting Control Object Name
 Sequential, !-Multiple Surface Control Type
 Zone_0:f2:w0; !-Fenestration Surface 1 Name
 

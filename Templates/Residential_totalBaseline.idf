@@ -192,7 +192,7 @@ HeatBalanceAlgorithm,
     0.1,                     !- Minimum Surface Convection Heat Transfer Coefficient Value {W/m2-K}
     1000;                    !- Maximum Surface Convection Heat Transfer Coefficient Value {W/m2-K}
 
-Timestep,8;
+Timestep,60;
 
 SurfaceConvectionAlgorithm:Inside,TARP;
 
@@ -1313,11 +1313,11 @@ Schedule:Day:Hourly, 6b941698-18b8-4936-863a-3895e4bedefa, AnyNumber,414.67,414.
 
 Schedule:Day:Hourly, b04b9e6c-977d-4e09-a027-668bd6748ccf, AnyNumber,414.69,414.69042,414.69083,414.69125,414.69167,414.69208,414.6925,414.69292,414.69333,414.69375,414.69417,414.69458,414.695,414.69542,414.69583,414.69625,414.69667,414.69708,414.6975,414.69792,414.69833,414.69875,414.69917,414.69958;
 
-Schedule:Day:Hourly, a9f4b4bc-2e12-458c-8fc4-2f3fb955b4e3, Fraction,1,1,1,1,1,1,0.8,0.6,0.4,0.4,0.4,0.6,0.8,0.6,0.4,0.4,0.6,0.8,0.8,0.8,0.8,1,1,1;
+Schedule:Day:Hourly, a9f4b4bc-2e12-458c-8fc4-2f3fb955b4e3, Fraction,1,1,1,1,1,1,0.6,0.4,0,0,0,0,0.8,0.4,0,0,0,0.4,0.8,0.8,0.8,1,1,1;
 
-Schedule:Day:Hourly, d8be7098-7ace-4360-a11b-1176e49025f8, Fraction,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0;
+Schedule:Day:Hourly, d8be7098-7ace-4360-a11b-1176e49025f8, Fraction,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,0,0;
 
-Schedule:Day:Hourly, a493c5d4-4ee4-409d-ac5e-7335f1d7d5ab, Fraction,0.1,0.1,0.1,0.1,0.1,0.1,0.5,1,0.5,0.5,0.5,1,1,0.5,0.5,0.5,1,1,1,1,0.5,0.5,0.5,0.1;
+Schedule:Day:Hourly, a493c5d4-4ee4-409d-ac5e-7335f1d7d5ab, Fraction,0.2,0.2,0.2,0.2,0.2,0.2,0.8,0.2,0.2,0.2,0.2,0.2,0.8,0.2,0.2,0.2,0.2,0.2,0.8,1,0.2,0.2,0.2,0.2;
 
 Schedule:Day:Hourly, efc2760d-8a1d-45c6-b962-a8a213a4c618, Fraction,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0;
 
@@ -6482,7 +6482,7 @@ People,
     occResidential,    !- OccupancySchedule
     People/Area,    !- Number of People Calculation Method
     ,   !- Number of People
-    0.025,    !- PeopleDensity [person/m2]
+    0.029,    !- PeopleDensity [person/m2]
     ,   !- Floor Area per Person [m2/person]
     0.3,    !- Fraction Radiant
     AUTOCALCULATE,  !- Sensible Heat Fraction
@@ -6515,7 +6515,7 @@ ElectricEquipment,
   equipResidential, !- EquipmentAvailibilitySchedule
   Watts/Area,          !- Design Level Calculation Method
   ,                !- Design Level [W]
-  2, !- EquipmentPowerDensity [W/m2]
+  5, !- EquipmentPowerDensity [W/m2]
   ,                        !- Watts per Person [W/person]
   0,                       !- Fraction Latent
   .2,                      !- Fraction Radiant
@@ -6529,13 +6529,38 @@ Lights,
   lightsResidential, !- LightsAvailibilitySchedule
   Watts/Area,              !- Design Level Calculation Method
   ,                        !- Lighting Level [W]
-  3,   !- LightingPowerDensity [W/m2]
+  5,   !- LightingPowerDensity [W/m2]
   ,                        !- Watts per Person [W/person]
   0,                       !- Return Air Fraction
   .42,                     !- Fraction Radiant
   .18,                     !- Fraction Visible
   1,                       !- Fraction Replaceable
   ;                        !- End-Use Subcategory
+
+Daylighting:Controls,
+    Zone_0_DaylCtrl,          !- Name
+    Zone_0,                   !- Zone or Space Name
+    SplitFlux,                !- Daylighting Method
+    lightsResidential,             !- Availability Schedule Name
+    Continuous,               !- Lighting Control Type
+    0.1,                      !- Minimum Input Power Fraction for Continuous or ContinuousOff Dimming Control
+    0.1,                      !- Minimum Light Output Fraction for Continuous or ContinuousOff Dimming Control
+    3,                        !- Number of Stepped Control Steps
+    1,                        !- Probability Lighting will be Reset When Needed in Manual Stepped Control
+    ,                         !- Glare Calculation Daylighting Reference Point Name
+    ,                         !- Glare Calculation Azimuth Angle of View Direction Clockwise from Zone yAxis
+    22,                       !- Maximum Allowable Discomfort Glare Index
+    ,                         !- DElight Gridding Resolution
+    Zone_0_DaylCtrlRefPt1,    !- Daylighting Reference Point 1 Name
+    1,                        !- Fraction of Lights Controlled by Reference Point 1
+    300;                      !- Illuminance Setpoint at Reference Point 1
+
+Daylighting:ReferencePoint,
+    Zone_0_DaylCtrlRefPt1,    !- Name
+    Zone_0,                   !- Zone or Space Name
+    3,                        !- XCoordinate of Reference Point
+    4.19439667463303,         !- YCoordinate of Reference Point
+    0.75;                     !- ZCoordinate of Reference Point
 
 ! ------------------------ NATVENT
 
@@ -6865,7 +6890,7 @@ Sizing:Zone,
 Schedule:Constant,
   Zone_0Heating_SP_Sch, !- Name
   Temperature, !- Schedule Type Limits Name
-  19; !- HeatingSetpoint
+  20; !- HeatingSetpoint
 
 Schedule:Constant,
   Zone_0Cooling_SP_Sch, !- Name
